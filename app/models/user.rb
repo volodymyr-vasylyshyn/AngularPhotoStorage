@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
-
-
+  has_many :albums
+  has_many :photos, through: :albums
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     if user
@@ -21,7 +21,6 @@ class User < ActiveRecord::Base
                             password:Devise.friendly_token[0,20]
                           )
       end
-       
     end
   end
 end

@@ -10,10 +10,13 @@ gem 'omniauth-facebook'
 
 gem 'haml'
 gem 'haml-rails'
-
+gem 'carrierwave'
+gem 'mini_magick'
 gem "twitter-bootstrap-rails"
-
-
+gem 'angularjs-rails'
+gem 'active_model_serializers'
+gem 'will_paginate', '~> 3.0'
+gem 'quiet_assets', :group => :development
 # Use sqlite3 as the database for Active Record
 gem 'mysql2'
 
@@ -42,11 +45,6 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
-
-group :assets do
-  gem 'angularjs-rails'
-end
-
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

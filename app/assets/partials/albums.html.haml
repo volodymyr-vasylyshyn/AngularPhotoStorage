@@ -1,0 +1,8 @@
+%h3 This is albums index page
+.list{"ng-controller" => "AlbumsCtrl"}
+  %form{'ng-submit' => 'addAlbum()', 'name' => 'addAlbumForm'}
+    %input(type='text' ng-model='newAlbum.title' required)
+    %input(type='submit' value='Add' ng-disabled='!addAlbumForm.$valid')
+  %ul.albums{"ng-repeat" => "album in albums"}
+    %li.album
+      %a(href="/albums/{{album.id}}") {{album.title}} ({{album.photos_count}} photos)

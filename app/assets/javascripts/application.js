@@ -12,6 +12,19 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require angular
+//= require angular-route
+//= require angular-resource
+//= require infinite-scroll
 //= require twitter/bootstrap
 //= require turbolinks
-//= require_tree .
+//= require app
+//= require_tree ./angular
+
+$(document).on('page:load', function() {
+  return $('[ng-app]').each(function() {
+    var module;
+    module = $(this).attr('ng-app');
+    return angular.bootstrap(this, [module]);
+  });
+});

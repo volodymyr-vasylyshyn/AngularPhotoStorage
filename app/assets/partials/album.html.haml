@@ -1,0 +1,5 @@
+%h3 This is album
+.span8{"ng-controller" => "AlbumCtrl"}
+  {{album.title}}
+  .col-md-8
+    %uploader-partial(target-id='{{album.id}}' target-type='albums')

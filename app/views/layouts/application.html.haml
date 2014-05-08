@@ -15,41 +15,33 @@
     = favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72'
     = favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png'
     = favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
-    = javascript_include_tag "application"
 
 
-  %body
-    .navbar.navbar-fluid-top
-      .navbar-inner
-        .container-fluid
-          %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
+  %body{'ng-app'=> 'app'}
+    %nav.navbar.navbar-fixed-top.navbar-inverse
+      .container
+        .navbar-header
+          %button.navbar-toggle{"data-target" => ".navbar-ex1-collapse", "data-toggle" => "collapse", type: "button"}
+            %span.sr-only Toggle navigation
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          %a.brand(href="#") AngularPhotoStorage
-          .container.nav-collapse
-            %ul.nav
-              %li= link_to "Link 1", "/path1"
-              %li= link_to "Link 2", "/path2"
-              %li= link_to "Link 3", "/path3"
-              - unless current_user
-                %li= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
-              - else
-                = current_user.name
-                %li= link_to "Sign out", destroy_user_session_path, method: :delete
+          .navbar-brand AngularPhotoStorage
+        .collapse.navbar-collapse.navbar-ex1-collapse
+          %ul.nav.navbar-nav{"ng-controller" => "AppCtrl"}
+            %li(ng-class="isActive('#{root_path}')")= link_to "Explore", root_path
+            - unless current_user
+              %li= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook), method: :get
+            - else
+              %li(ng-class="isActive('/albums')")= link_to "My albums", "/albums"
+              %li.username= current_user.name
+              %li= link_to "Sign out", destroy_user_session_path, method: :delete
 
-    .container-fluid
-
-      .row-fluid
-        .span3
-          .well.sidebar-nav
-            %ul.nav.nav-list
-              %li.nav-header Sidebar
-              %li= link_to "Link 1", "/path1"
-              %li= link_to "Link 2", "/path2"
-              %li= link_to "Link 3", "/path3"
-        .span9
-          = yield
-    
+    .container.content
+      = yield
+      %hr/
       %footer
-        %p &copy; Company 2014
+        .row
+          .col-lg-12
+            %p Copyright © Company 2014
+    = javascript_include_tag "application"

@@ -11,7 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140505145342) do
+ActiveRecord::Schema.define(version: 20140508064310) do
+
+  create_table "albums", force: true do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "photos_count", default: 0
+  end
+
+  create_table "photos", force: true do |t|
+    t.string   "title"
+    t.string   "image"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "album_id"
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
