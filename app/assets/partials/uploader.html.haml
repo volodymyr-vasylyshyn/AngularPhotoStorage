@@ -1,16 +1,28 @@
 %div{"ng-file-drop" => ""}
-  .row
-    .col-md-3
-      %h3 Select files
-      %div{"ng-show" => "uploader.isHTML5"}
-        / 3. ng-file-over | ng-file-over="className"
-        .well.my-drop-zone{"ng-file-over" => ""}
-          Base drop zone
-        / Example: ng-file-drop | ng-file-drop="options"
-      / 2. ng-file-select | ng-file-select="options"
-      %input{multiple: "multiple", "ng-file-select" => "", type: "file"}/
-    .col-md-9{style: "margin-bottom: 40px"}
-      %h2 Uploads only images (with canvas preview)
+  .row.span4
+    %div{"ng-show" => "uploader.isHTML5"}
+      / 3. ng-file-over | ng-file-over="className"
+      .well.my-drop-zone{"ng-file-over" => ""}
+        Base drop zone
+      / Example: ng-file-drop | ng-file-drop="options"
+    / 2. ng-file-select | ng-file-select="options"
+    %input{multiple: "multiple", "ng-file-select" => "", type: "file"}/
+  .uploader-controls{"ng-show" => "hasElements"}
+    .row.span4  
+      .progress{style: ""}
+        .progress-bar{"ng-style" => "{ 'width': uploader.progress + '%' }", role: "progressbar"}
+          Queue progress:
+    .row.span4
+      %button.btn.btn-success.btn-s{"ng-click" => "uploader.uploadAll()", "ng-disabled" => "!uploader.getNotUploadedItems().length", type: "button"}
+        %span.glyphicon.glyphicon-upload
+        Upload all
+      %button.btn.btn-warning.btn-s{"ng-click" => "uploader.cancelAll()", "ng-disabled" => "!uploader.isUploading", type: "button"}
+        %span.glyphicon.glyphicon-ban-circle
+        Cancel all
+      %button.btn.btn-danger.btn-s{"ng-click" => "uploader.clearQueue()", "ng-disabled" => "!uploader.queue.length", type: "button"}
+        %span.glyphicon.glyphicon-trash
+        Remove all
+    .row.span4{style: "margin-bottom: 40px"}
       %h3 The queue
       %p Queue length: 
       %table.table
@@ -53,17 +65,3 @@
               %button.btn.btn-danger.btn-xs{"ng-click" => "item.remove()", type: "button"}
                 %span.glyphicon.glyphicon-trash
                 Remove
-      %div
-        %p
-          Queue progress:
-        .progress{style: ""}
-          .progress-bar{"ng-style" => "{ 'width': uploader.progress + '%' }", role: "progressbar"}
-        %button.btn.btn-success.btn-s{"ng-click" => "uploader.uploadAll()", "ng-disabled" => "!uploader.getNotUploadedItems().length", type: "button"}
-          %span.glyphicon.glyphicon-upload
-          Upload all
-        %button.btn.btn-warning.btn-s{"ng-click" => "uploader.cancelAll()", "ng-disabled" => "!uploader.isUploading", type: "button"}
-          %span.glyphicon.glyphicon-ban-circle
-          Cancel all
-        %button.btn.btn-danger.btn-s{"ng-click" => "uploader.clearQueue()", "ng-disabled" => "!uploader.queue.length", type: "button"}
-          %span.glyphicon.glyphicon-trash
-          Remove all

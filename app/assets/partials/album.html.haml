@@ -2,14 +2,10 @@
   %h2 {{album.title}}
   .row
     .col-md-8
-      here is photos
+      %h1.page-header Thumbnail Gallery
+      .photos{"ng-repeat" => "photo in album.photos"}
+        .col-lg-3.col-md-4.col-xs-6.thumb.medium
+          %img.thumbnail(src='{{photo.medium || photo.url}}')
+          .btn.btn-danger(ng-click='deletePhoto($index)') Delete
     .col-md-4
-      here is uploader
-  .col-md-12
-    %uploader-partial(target-id='{{album.id}}' target-type='albums')
-  .col-md-12
-    %h1.page-header Thumbnail Gallery
-    .photos{"ng-repeat" => "photo in album.photos"}
-      .col-lg-3.col-md-4.col-xs-6.thumb.medium
-        %img.thumbnail(src='{{photo.medium || photo.url}}')
-        .btn.btn-danger(ng-click='deletePhoto($index)') Delete
+      %uploader-partial(target-id='{{album.id}}' target-type='albums')
