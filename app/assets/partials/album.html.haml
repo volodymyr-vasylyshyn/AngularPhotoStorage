@@ -1,5 +1,9 @@
-%h3 This is album
-.span8{"ng-controller" => "AlbumCtrl"}
-  {{album.title}}
-  .col-md-8
+.span12{"ng-controller" => "AlbumCtrl"}
+  %h2 {{album.title}}
+  .row
+    .col-md-8
+      here is photos
+    .col-md-4
+      here is uploader
+  .col-md-12
     %uploader-partial(target-id='{{album.id}}' target-type='albums')
