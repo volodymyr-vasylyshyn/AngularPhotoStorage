@@ -21,6 +21,7 @@ app.directive('uploaderPartial', function() {
       },
       controller: function ($scope, $routeParams,$fileUploader) {
         // Creates a uploader
+        $scope.hasElements = false;
         $scope.$watch('targetId', function(newValue, oldValue) {
           var csrf_token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
           var uploader = $scope.uploader = $fileUploader.create({
@@ -42,6 +43,18 @@ app.directive('uploaderPartial', function() {
               type = '|' + type.toLowerCase().slice(type.lastIndexOf('/') + 1) + '|';
               return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
           });
+
+          uploader.bind('afteraddingfile', function (event, item) {
+            if ($scope.uploader.queue.length > 0)
+              $scope.hasElements = true;
+            else
+              $scope.hasElements = false;
+          });       
+
+          uploader.bind('completeall', function (event, items) {
+            $scope.hasElements = false;
+          });
+
         });
       },
       templateUrl : '/assets/uploader.html'

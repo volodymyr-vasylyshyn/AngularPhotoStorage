@@ -133,6 +133,7 @@ app.factory('$fileUploader', ['$compile', '$rootScope', '$http', '$window', func
                 if(isValid) {
                     this.queue.push(item);
                     this.trigger('afteraddingfile', item);
+                    
                 } else {
                     this.trigger('whenaddingfilefailed', item);
                 }
