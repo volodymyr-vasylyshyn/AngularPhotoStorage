@@ -5,8 +5,22 @@
   To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
   =require twitter-bootstrap-static/fontawesome
   */
-
-  
+.fileUpload {
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+}
+.fileUpload input.upload {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
 .my-drop-zone { 
   border: dotted 2px lightgray; 
   height: 200px;
@@ -19,6 +33,10 @@
   font-size: 36px;
   color: #555;
   padding-top: 65px;
+  &.ng-file-over {
+    border: dashed 2px #E3E042;
+    background-color: #BAC2B0;
+  }
 }
 .ng-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
 .another-file-over-class { border: dotted 3px green; }

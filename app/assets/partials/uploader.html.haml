@@ -6,7 +6,10 @@
         Drop zone
       / Example: ng-file-drop | ng-file-drop="options"
     / 2. ng-file-select | ng-file-select="options"
-    %input{multiple: "multiple", "ng-file-select" => "", type: "file"}/
+
+    .fileUpload.btn.btn-primary
+      %span Upload
+      %input.upload{multiple: "multiple", "ng-file-select" => "", type: "file"}/   
   .uploader-controls{"ng-show" => "hasElements"}
     .row.span4  
       .progress{style: ""}
@@ -16,9 +19,6 @@
       %button.btn.btn-success.btn-s{"ng-click" => "uploader.uploadAll()", "ng-disabled" => "!uploader.getNotUploadedItems().length", type: "button"}
         %span.glyphicon.glyphicon-upload
         Upload all
-      %button.btn.btn-warning.btn-s{"ng-click" => "uploader.cancelAll()", "ng-disabled" => "!uploader.isUploading", type: "button"}
-        %span.glyphicon.glyphicon-ban-circle
-        Cancel all
       %button.btn.btn-danger.btn-s{"ng-click" => "uploader.clearQueue()", "ng-disabled" => "!uploader.queue.length", type: "button"}
         %span.glyphicon.glyphicon-trash
         Remove all
@@ -51,17 +51,12 @@
             %td.text-center
               %span{"ng-show" => "item.isSuccess"}
                 %i.glyphicon.glyphicon-ok
-              %span{"ng-show" => "item.isCancel"}
-                %i.glyphicon.glyphicon-ban-circle
               %span{"ng-show" => "item.isError"}
                 %i.glyphicon.glyphicon-remove
             %td{nowrap: "nowrap"}
               %button.btn.btn-success.btn-xs{"ng-click" => "item.upload()", "ng-disabled" => "item.isReady || item.isUploading || item.isSuccess", type: "button"}
                 %span.glyphicon.glyphicon-upload
                 Upload
-              %button.btn.btn-warning.btn-xs{"ng-click" => "item.cancel()", "ng-disabled" => "!item.isUploading", type: "button"}
-                %span.glyphicon.glyphicon-ban-circle
-                Cancel
               %button.btn.btn-danger.btn-xs{"ng-click" => "item.remove()", type: "button"}
                 %span.glyphicon.glyphicon-trash
                 Remove
