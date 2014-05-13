@@ -6,7 +6,7 @@ var angularPhotoStorageServices = angular.module('ngServices', ['ngResource']);
 
 angularPhotoStorageServices.factory('Photos', ['$resource',
   function($resource){
-    return $resource('/api/v1/photos.json', {}, {
+    return $resource('/api/v1/photos/:photoId', {photoId:'@photoId'}, {
       query: {
         method:'GET',
         isArray: true,

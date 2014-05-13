@@ -45,15 +45,21 @@ ngControllers.controller('AlbumsCtrl', ['$scope', 'Albums',
     };
     $scope.delete = function(idx){
         var album_to_delete = $scope.albums[idx];
-        Albums.remove({albumId:album_to_delete.id}, function(){
+        Albums.delete({albumId:album_to_delete.id}, function(){
             $scope.albums.splice(idx, 1);
         });
     };
   }]
 );
-ngControllers.controller('AlbumCtrl', ['$scope', '$routeParams', 'Albums',
-  function($scope, $routeParams, Albums) {
+ngControllers.controller('AlbumCtrl', ['$scope', '$routeParams', 'Albums', 'Photos',
+  function($scope, $routeParams, Albums, Photos) {
     $scope.album = Albums.get({albumId: $routeParams.albumId});
+    $scope.deletePhoto = function(idx){
+      var photo_to_delete = $scope.album.photos[idx];
+      Photos.delete({photoId:photo_to_delete.id}, function(){
+          $scope.album.photos.splice(idx, 1);
+      });
+    };
   }]
 );
 // ngControllers.controller('ImageUploaderCtrl', function ($scope, $routeParams,$fileUploader) {
