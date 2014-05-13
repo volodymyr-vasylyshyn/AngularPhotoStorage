@@ -2,8 +2,8 @@
   .row.span4
     %div{"ng-show" => "uploader.isHTML5"}
       / 3. ng-file-over | ng-file-over="className"
-      .well.my-drop-zone{"ng-file-over" => ""}
-        Base drop zone
+      .my-drop-zone{"ng-file-over" => ""}
+        Drop zone
       / Example: ng-file-drop | ng-file-drop="options"
     / 2. ng-file-select | ng-file-select="options"
     %input{multiple: "multiple", "ng-file-select" => "", type: "file"}/

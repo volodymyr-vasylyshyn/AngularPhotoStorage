@@ -26,7 +26,6 @@ app.directive('uploaderPartial', function() {
         });
 
         $scope.$watch('uploader.getNotUploadedItems().length', function(newValue, oldValue) {
-          console.log(newValue);
           $scope.hasElements = newValue > 0;
         });
         // ADDING FILTERS
