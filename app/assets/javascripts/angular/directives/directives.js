@@ -47,18 +47,15 @@ app.directive('uploaderPartial', function() {
       templateUrl : '/assets/uploader.html'
     };
   });
-app.directive('whenScrolled', function() {
-    return function(scope, elm, attr) {
-      var raw = elm[0];
-      angular.element(window).bind('scroll', function() {
-        // calculating the time/space continuum needed to trigger the loading of the next pagination
-        if (raw.scrollTop + raw.offsetHeight >= raw.scrollHeight) {
-          scope.$apply(attr.whenScrolled);
-        }
-      });
-      elm.bind('click', function() {
-        // calculating the time/space continuum needed to trigger the loading of the next pagination
-        console.warn("AAAAAAAAAA")
-      });
-    };
-  });
+// app.directive('whenScrolled', function() {
+//     return function(scope, elm, attr) {
+//       var raw = elm[0];
+//       elm.bind('scroll', function() {
+//         // calculating the time/space continuum needed to trigger the loading of the next pagination
+//         console.warn('entering')
+//         if (raw.scrollTop + raw.offsetHeight >= raw.scrollHeight) {
+//           scope.$apply(attr.whenScrolled);
+//         }
+//       });
+//     };
+//   });

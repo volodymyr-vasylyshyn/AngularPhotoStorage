@@ -11,6 +11,9 @@
  *= require_self
  *= require_tree .
  */
+#photos_container {
+  overflow: auto;
+}
 .username {
   padding: 10px 15px 10px;
   color: #1FB680;

@@ -8,15 +8,20 @@ ngControllers.controller('ExploreCtrl', ['$scope', '$http','Photos',
     function($scope, $http, Photos) {
         // $scope.photos = Photos.query();
         var counter = 1;
+        $scope.busy = false;
         $scope.photos = [];
+        $scope.isLastEmpty = false;
         // infinite scroll (load next page)
         $scope.load_data = function() {
+            if ($scope.busy || $scope.isLastEmpty) return;
+            $scope.busy = true;
             $http.get('/api/v1/photos.json'+'?page='+counter).success(function(data) {
+                $scope.isLastEmpty = data.photos.length == 0;
                 $scope.photos = $scope.photos.concat(data.photos);
+                $scope.busy = false;
             });
             counter += 1; // increment page number for next request
         };
-        $scope.load_data(counter);
     }]
 );
 ngControllers.controller('AppCtrl', ['$scope', '$location',
@@ -37,6 +42,12 @@ ngControllers.controller('AlbumsCtrl', ['$scope', 'Albums',
       var album = Albums.save($scope.newAlbum);
       $scope.albums.push(album);
       $scope.newAlbum = {};
+    };
+    $scope.delete = function(idx){
+        var album_to_delete = $scope.albums[idx];
+        Albums.remove({albumId:album_to_delete.id}, function(){
+            $scope.albums.splice(idx, 1);
+        });
     };
   }]
 );

@@ -6,3 +6,4 @@
   %ul.albums{"ng-repeat" => "album in albums"}
     %li.album
       %a(href="/albums/{{album.id}}") {{album.title}} ({{album.photos_count}} photos)
+      .btn.btn-danger(ng-click='delete($index)') Delete

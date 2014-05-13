@@ -17,7 +17,6 @@ angularPhotoStorageServices.factory('Photos', ['$resource',
     });
   }]
 );
-
 angularPhotoStorageServices.factory('Albums', ['$resource',
   function($resource){
     return $resource('/api/v1/albums/:albumId', {albumId:'@albumId'}, {

@@ -1,6 +1,6 @@
 / .col-lg-12(when-scrolled="load_data()")
-.col-lg-12(infinite-scroll="load_data()")
+#photos_container(infinite-scroll="load_data()"  infinite-scroll-disabled='busy' infinite-scroll-distance='1')
   %h1.page-header Thumbnail Gallery
-.photos{"ng-repeat" => "photo in photos"}
-  .col-lg-3.col-md-4.col-xs-6.thumb
-    %img.thumbnail(src='{{photo.medium}}')
+  .photos{"ng-repeat" => "photo in photos"}
+    .col-lg-3.col-md-4.col-xs-6.thumb
+      %img.thumbnail(src='{{photo.medium}}')
