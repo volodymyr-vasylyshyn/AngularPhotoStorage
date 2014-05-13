@@ -14,6 +14,10 @@
 #photos_container {
   overflow: auto;
 }
+.medium {
+  height: 200px;
+  margin-bottom: 30px;
+}
 .username {
   padding: 10px 15px 10px;
   color: #1FB680;

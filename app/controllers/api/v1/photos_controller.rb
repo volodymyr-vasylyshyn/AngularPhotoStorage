@@ -4,7 +4,7 @@ module Api::V1
     before_action :set_target, only: [:create]
 
     def index
-      respond_with Photo.paginate(page: params[:page], per_page: 10)
+      respond_with Photo.paginate(page: params[:page], per_page: 12)
     end
 
     def create
