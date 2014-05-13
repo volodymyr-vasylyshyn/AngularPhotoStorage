@@ -24,6 +24,11 @@ app.directive('uploaderPartial', function() {
               'X-CSRF-TOKEN' : csrf_token // X-CSRF-TOKEN is used for Ruby on Rails Tokens
             },
         });
+
+        $scope.$watch('uploader.getNotUploadedItems().length', function(newValue, oldValue) {
+          console.log(newValue);
+          $scope.hasElements = newValue > 0;
+        });
         // ADDING FILTERS
         // Images only
         uploader.filters.push(function(item /*{File|HTMLInputElement}*/) {
@@ -35,16 +40,6 @@ app.directive('uploaderPartial', function() {
           $scope.$parent.album.photos.push(response.photo);
           $scope.$parent.$apply();
         });
-        uploader.bind('afteraddingfile', function (event, item) {
-            if ($scope.uploader.queue.length > 0)
-              $scope.hasElements = true;
-            else
-              $scope.hasElements = false;
-          });       
-
-          uploader.bind('completeall', function (event, items) {
-            $scope.hasElements = false;
-          });
       });
     },
     templateUrl : '/assets/uploader.html'
