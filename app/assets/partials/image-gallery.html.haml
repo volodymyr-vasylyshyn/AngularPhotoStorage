@@ -1,10 +1,20 @@
-.container.slider
-  / enumerate all photos
-  %img.slide{"ng-repeat" => "photo in images", "ng-show" => "isActive($index)", "ng-src" => "", "ng-swipe-left" => "showNext()", "ng-swipe-right" => "showPrev()"}/
-  / prev / next controls
-  %a.arrow.prev{href: "#", "ng-click" => "showPrev()"}
-  %a.arrow.next{href: "#", "ng-click" => "showNext()"}
-  / extra navigation controls
-  %ul.nav
-    %li{"ng-class" => "{'active':isActive($index)}", "ng-repeat" => "photo in images"}
-      %img{alt: "", "ng-click" => "showPhoto($index);", src: "", title: ""}/
+.container
+  .slider
+    / enumerate all photos
+    %img.slide{"ng-repeat" => "photo in photos", "ng-show" => "isActive($index)", "ng-src" => "{{photo.path}}", "ng-swipe-left" => "showNext()", "ng-swipe-right" => "showPrev()"}/
+    / prev / next controls
+    %a.arrow.prev{href: "#", "ng-click" => "showPrev()"} Prev
+    %a.arrow.next{href: "#", "ng-click" => "showNext()"} Next
+    / extra navigation controls
+  .nav
+    .buttons-left
+      %a.nav-left{href: "#", "ng-click" => "moveNavLeft()"} Prev
+    .nav-container
+      .nav-items{"ng-style" => "navStyle"}
+        %ul
+          %li{"ng-class" => "{'active':isActive($index)}", "ng-repeat" => "photo in photos"}
+            %img{alt: "", "ng-click" => "showPhoto($index);", "src" =>"{{photo.preview}}", title: ""}/
+    
+    .buttons-right
+      %a.nav-right{href: "#", "ng-click" => "moveNavRight()"} Next
+  %a.close(ng-click="close()") Close

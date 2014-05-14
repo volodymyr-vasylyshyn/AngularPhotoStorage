@@ -48,9 +48,9 @@ app.directive('launchGallery', function() {
   return {
     restrict: 'A',
     link: function (scope, element, attrs) {
-      console.warn(scope)
       scope.$parent.showGallery = false;
       element.bind('click', function(){
+        scope.$parent.photoIndex = parseInt(attrs.index, 10);
         scope.$parent.showGallery = true;
         scope.$parent.$apply();
       });
@@ -61,10 +61,13 @@ app.directive('imageGallery', function() {
   return {
     restrict: 'EA',
     scope: {
-      images: '='
+      photos: '=images'
     },
-    controller: function ($scope, $routeParams,$fileUploader) {
+    controller: function ($scope, $routeParams) {
       // initial image index
+      $scope.$parent.$watch('photoIndex', function(newValue, oldValue){
+        $scope._Index = newValue;
+      });
       // if a current image is the same as requested image
       $scope.isActive = function (index) {
           return $scope._Index === index;
@@ -84,6 +87,27 @@ app.directive('imageGallery', function() {
       $scope.showPhoto = function (index) {
           $scope._Index = index;
       };
+      $scope.navLeft = 25;
+
+      // hide gallery
+      $scope.close = function () {
+        $scope.$parent.showGallery = false;
+      };
+      $scope.moveNavLeft = function () {
+        if($scope.navLeft < 25)
+          $scope.navLeft = $scope.navLeft - 100;
+        $scope.navStyle = {
+          left: $scope.navLeft + 'px'
+        };
+      };
+      $scope.moveNavRight = function () {
+        if($scope.navLeft < 25)
+          $scope.navLeft = $scope.navLeft + 100;
+        $scope.navStyle = {
+          left: $scope.navLeft + 'px'
+        };
+      };
+      
     },
     templateUrl : '/assets/image-gallery.html'
   }
