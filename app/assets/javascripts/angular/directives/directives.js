@@ -44,3 +44,47 @@ app.directive('uploaderPartial', function() {
     templateUrl : '/assets/uploader.html'
   };
 });
+app.directive('launchGallery', function() {
+  return {
+    restrict: 'A',
+    link: function (scope, element, attrs) {
+      console.warn(scope)
+      scope.$parent.showGallery = false;
+      element.bind('click', function(){
+        scope.$parent.showGallery = true;
+        scope.$parent.$apply();
+      });
+    }
+  };
+});
+app.directive('imageGallery', function() {
+  return {
+    restrict: 'EA',
+    scope: {
+      images: '='
+    },
+    controller: function ($scope, $routeParams,$fileUploader) {
+      // initial image index
+      // if a current image is the same as requested image
+      $scope.isActive = function (index) {
+          return $scope._Index === index;
+      };
+
+      // show prev image
+      $scope.showPrev = function () {
+          $scope._Index = ($scope._Index > 0) ? --$scope._Index : $scope.photos.length - 1;
+      };
+
+      // show next image
+      $scope.showNext = function () {
+          $scope._Index = ($scope._Index < $scope.photos.length - 1) ? ++$scope._Index : 0;
+      };
+
+      // show a certain image
+      $scope.showPhoto = function (index) {
+          $scope._Index = index;
+      };
+    },
+    templateUrl : '/assets/image-gallery.html'
+  }
+});

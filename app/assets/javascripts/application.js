@@ -15,6 +15,8 @@
 //= require angular
 //= require angular-route
 //= require angular-resource
+//= require angular-animate
+//= require angular-touch
 //= require infinite-scroll
 //= require twitter/bootstrap
 //= require turbolinks

@@ -8,7 +8,9 @@ var app = angular.module('app', [
   'ngControllers',
   // 'ngFilters',
   'ngServices',
-  'infinite-scroll'
+  'infinite-scroll',
+  'ngAnimate',
+  'ngTouch'
 ]);
 
 app.config(['$routeProvider', '$locationProvider',

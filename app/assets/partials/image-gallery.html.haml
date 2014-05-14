@@ -1,0 +1,10 @@
+.container.slider
+  / enumerate all photos
+  %img.slide{"ng-repeat" => "photo in images", "ng-show" => "isActive($index)", "ng-src" => "", "ng-swipe-left" => "showNext()", "ng-swipe-right" => "showPrev()"}/
+  / prev / next controls
+  %a.arrow.prev{href: "#", "ng-click" => "showPrev()"}
+  %a.arrow.next{href: "#", "ng-click" => "showNext()"}
+  / extra navigation controls
+  %ul.nav
+    %li{"ng-class" => "{'active':isActive($index)}", "ng-repeat" => "photo in images"}
+      %img{alt: "", "ng-click" => "showPhoto($index);", src: "", title: ""}/
