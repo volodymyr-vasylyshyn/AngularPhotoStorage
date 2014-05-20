@@ -1,4 +1,4 @@
-.container
+.container.aaa
   .slider
     / enumerate all photos
     %img.slide{"ng-repeat" => "photo in photos", "ng-show" => "isActive($index)", "ng-src" => "{{photo.path}}", "ng-swipe-left" => "showNext()", "ng-swipe-right" => "showPrev()"}/
@@ -8,7 +8,7 @@
     / extra navigation controls
   .nav
     .buttons-left
-      %a.nav-left{href: "#", "ng-click" => "moveNavLeft()"} Prev
+      %a.nav-left{href: "#", "ng-click" => "moveNavRight()"} Prev
     .nav-container
       .nav-items{"ng-style" => "navStyle"}
         %ul
@@ -16,5 +16,5 @@
             %img{alt: "", "ng-click" => "showPhoto($index);", "src" =>"{{photo.preview}}", title: ""}/
     
     .buttons-right
-      %a.nav-right{href: "#", "ng-click" => "moveNavRight()"} Next
+      %a.nav-right{href: "#", "ng-click" => "moveNavLeft()"} Next
   %a.close(ng-click="close()") Close

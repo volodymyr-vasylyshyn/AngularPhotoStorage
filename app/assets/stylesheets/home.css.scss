@@ -1,3 +1,29 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.photos.ng-enter,
+.photos.ng-leave,
+.photos.ng-move {
+  -webkit-transition: 0.5s linear all;
+  -moz-transition: 0.5s linear all;
+  -o-transition: 0.5s linear all;
+  transition: 0.5s linear all;
+}
+.photos.ng-enter,
+.photos.ng-move {
+  opacity: 0;
+}
+
+.photos.ng-move.ng-move-active,
+.photos.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+
+.photos.ng-leave {
+  opacity: 1;
+  overflow: hidden;
+}
+
+.photos.ng-leave.ng-leave-active {
+  opacity: 0;
+}

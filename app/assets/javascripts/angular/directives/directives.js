@@ -95,7 +95,8 @@ app.directive('imageGallery', function() {
       $scope.navStyleF = function () {
         return {
           left: $scope.navLeft + 'px',
-          width: $scope.navWidth()
+          width: $scope.navWidth(),
+          transition: 'all 1s ease'
         };
       };
 
