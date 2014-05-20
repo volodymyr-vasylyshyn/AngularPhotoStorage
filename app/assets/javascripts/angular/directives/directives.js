@@ -63,7 +63,7 @@ app.directive('imageGallery', function() {
     scope: {
       photos: '=images'
     },
-    controller: function ($scope, $routeParams) {
+    controller: function ($scope, $window, $routeParams) {
       // initial image index
       $scope.$parent.$watch('photoIndex', function(newValue, oldValue){
         $scope._Index = newValue;
@@ -87,25 +87,31 @@ app.directive('imageGallery', function() {
       $scope.showPhoto = function (index) {
           $scope._Index = index;
       };
-      $scope.navLeft = 25;
+      $scope.navLeft = 15;
+      $scope.navWidth = function () {
+        return 102 * ($scope.photos.length + 1);
+      };
+      
+      $scope.navStyleF = function () {
+        return {
+          left: $scope.navLeft + 'px',
+          width: $scope.navWidth()
+        };
+      };
 
       // hide gallery
       $scope.close = function () {
         $scope.$parent.showGallery = false;
       };
       $scope.moveNavLeft = function () {
-        if($scope.navLeft < 25)
-          $scope.navLeft = $scope.navLeft - 100;
-        $scope.navStyle = {
-          left: $scope.navLeft + 'px'
-        };
+        if($scope.navLeft > $window.innerWidth - 100 - $scope.navWidth())
+          $scope.navLeft = $scope.navLeft - 104;
+        $scope.navStyle = $scope.navStyleF();
       };
       $scope.moveNavRight = function () {
-        if($scope.navLeft < 25)
-          $scope.navLeft = $scope.navLeft + 100;
-        $scope.navStyle = {
-          left: $scope.navLeft + 'px'
-        };
+        if($scope.navLeft < 15)
+          $scope.navLeft = $scope.navLeft + 104;        
+        $scope.navStyle = $scope.navStyleF();
       };
       
     },
