@@ -3,16 +3,16 @@
     %div{"ng-show" => "uploader.isHTML5"}
       / 3. ng-file-over | ng-file-over="className"
       .my-drop-zone{"ng-file-over" => ""}
-        Drop zone
+        Drop Images
       / Example: ng-file-drop | ng-file-drop="options"
     / 2. ng-file-select | ng-file-select="options"
-
+    %span.manual-txt or upload manually
     .fileUpload.btn.btn-primary
       %span Upload
       %input.upload{multiple: "multiple", "ng-file-select" => "", type: "file"}/   
   .uploader-controls{"ng-show" => "hasElements"}
     .row.span4  
-      .progress{style: ""}
+      .progress{style: "margin-top:20px;"}
         .progress-bar{"ng-style" => "{ 'width': uploader.progress + '%' }", role: "progressbar"}
           Queue progress:
     .row.span4

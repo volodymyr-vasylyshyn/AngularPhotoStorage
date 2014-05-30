@@ -34,9 +34,80 @@ body {
 }
 
 footer {
-  margin: 50px 0;
+  position: absolute;
+  height: 63px; 
+  bottom: 0;
+  width: 1170px;
+  border-top: 1px solid #EEEEEE;
+}
+footer .row {
+  padding-top:20px;
 }
 
 .content {
-  margin-top: 50px;
+  padding: 50px 0 133px;
+}
+.container-fluid {
+  height:100%;
+}
+.wrap {
+  margin: 0 auto -63px;
+  min-height: 100%;
+  position: relative;
+  width: 1170px;
+}
+.navbar {
+  border:0!important;
+}
+.navbar-inverse {
+  background-color: #000B3C!important;
+}
+.navbar .nav {
+  margin: 20px 10px 0 50px!important;
+}
+.navbar-inverse .brand, .navbar-inverse .nav > li > a {
+    color: #999999;
+    text-shadow: none!important;
+}
+.navbar .nav > .active > a, .navbar .nav > .active > a:hover, .navbar .nav > .active > a:focus{
+  box-shadow:none!important;
+}
+.navbar .nav > li > a {
+    padding: 5px 15px!important;
+}
+.navbar .nav.user-nav {
+  float:right!important;
+  margin: 13px 10px 0 0!important;
+}
+.user-nav .username {
+  padding: 0 15px;
+  text-shadow: none;
+  color: #A9C7D6;
+}
+.user-nav .username span {
+  color: #999999;
+}
+.navbar .nav.user-nav > li > a {
+    padding: 0 15px!important;
+}
+
+
+.albums {
+  list-style: none;
+  margin:0;
+  display:inline-block;
+}
+.albums li{
+  margin:0;
+  list-style: none;
+  clear:both;
+  line-height:30px;
+  padding:5px 0;
+}
+.albums li .btn {
+  float:right;
+}
+.albums .album .ng-binding {
+  font-size:16px;
+  margin-right:20px;
 }

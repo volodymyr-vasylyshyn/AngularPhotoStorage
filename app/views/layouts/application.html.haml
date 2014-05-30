@@ -18,30 +18,36 @@
 
 
   %body{'ng-app'=> 'app'}
-    %nav.navbar.navbar-fixed-top.navbar-inverse
-      .container
-        .navbar-header
-          %button.navbar-toggle{"data-target" => ".navbar-ex1-collapse", "data-toggle" => "collapse", type: "button"}
-            %span.sr-only Toggle navigation
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-          .navbar-brand AngularPhotoStorage
-        .collapse.navbar-collapse.navbar-ex1-collapse
-          %ul.nav.navbar-nav{"ng-controller" => "AppCtrl"}
-            %li(ng-class="isActive('#{root_path}')")= link_to "Explore", root_path
+    .wrap
+      %nav.navbar.navbar-fixed-top.navbar-inverse
+        .container
+          .navbar-header
+            %button.navbar-toggle{"data-target" => ".navbar-ex1-collapse", "data-toggle" => "collapse", type: "button"}
+              %span.sr-only Toggle navigation
+              %span.icon-bar
+              %span.icon-bar
+              %span.icon-bar
+            .navbar-brand AngularPhotoStorage
+          .collapse.navbar-collapse.navbar-ex1-collapse
             - unless current_user
-              %li= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook), method: :get
+              %ul.nav.navbar-nav{"ng-controller" => "AppCtrl"}
+                %li(ng-class="isActive('#{root_path}')")= link_to "Explore", root_path
+              %ul.nav.navbar-nav.user-nav{"ng-controller" => "AppCtrl"}
+                %li= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook), method: :get
             - else
-              %li(ng-class="isActive('/albums')")= link_to "My albums", "/albums"
-              %li.username= current_user.name
-              %li= link_to "Sign out", destroy_user_session_path, method: :delete
+              %ul.nav.navbar-nav{"ng-controller" => "AppCtrl"}
+                %li(ng-class="isActive('#{root_path}')")= link_to "Explore", root_path
+                %li(ng-class="isActive('/albums')")= link_to "My albums", "/albums"
+              %ul.nav.navbar-nav.user-nav{"ng-controller" => "AppCtrl"}
+                %li.username
+                  %span Welcome
+                  = current_user.name
+                %li= link_to "Sign out", destroy_user_session_path, method: :delete
 
-    .container.content
-      = yield
-      %hr/
+      .container.content
+        = yield
       %footer
         .row
           .col-lg-12
             %p Copyright © Company 2014
-    = javascript_include_tag "application"
+      = javascript_include_tag "application"
