@@ -1,9 +1,21 @@
-%h3 This is albums index page
-.list{"ng-controller" => "AlbumsCtrl"}
-  %form{'ng-submit' => 'addAlbum()', 'name' => 'addAlbumForm'}
-    %input(type='text' ng-model='newAlbum.title' required)
-    %input(type='submit' value='Add' ng-disabled='!addAlbumForm.$valid')
-  %ul.albums{"ng-repeat" => "album in albums"}
-    %li.album
-      %a(href="/albums/{{album.id}}") {{album.title}} ({{album.photos_count}} photos)
-      .btn.btn-danger(ng-click='delete($index)') Delete
+.span12{"ng-controller" => "AlbumsCtrl"}
+  %h2 This is albums index page
+  .row
+    .col-md-8
+      %ul.albums
+        %li.album{"ng-repeat" => "album in albums"}
+          %a(href="/albums/{{album.id}}")
+            .col-lg-3.col-md-4.col-xs-6.thumb.medium
+              %img.thumbnail(src='{{album.album_cover}}')
+              {{album.title}} ({{album.photos_count}} photos)
+              %span.icon.icon-remove(ng-click='delete($index)')
+        
+    .col-md-4
+      %form.form-horizontal{'ng-submit' => 'addAlbum()', 'name' => 'addAlbumForm', :role=>"form"}
+        .form-group
+          %label.col-sm-1.control-label{for: "inputName"} Name
+          .col-sm-4
+            %input#inputName.form-control(placeholder= "Album Name" type='text' ng-model='newAlbum.title' required)/
+        .form-group
+          .col-sm-offset-1.col-sm-4       
+            %input.btn.btn-default(type='submit' value='Add' ng-disabled='!addAlbumForm.$valid')

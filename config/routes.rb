@@ -10,6 +10,6 @@ AngularPhotoStorage::Application.routes.draw do
       end
     end
   end
-  match "*path" => "home#index", via: :all
+  match "*path(.:format)" => "home#index", via: :all, format: false
   root 'home#index'
 end
