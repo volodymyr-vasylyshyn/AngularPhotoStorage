@@ -37,6 +37,8 @@ app.factory('$fileUploader', ['$compile', '$rootScope', '$http', '$window', func
 
         this.scope.$on('file:add', function(event, items, options) {
             event.stopPropagation();
+            sss = items;
+            console.log(items);
             this.addToQueue(items, options);
         }.bind(this));
 

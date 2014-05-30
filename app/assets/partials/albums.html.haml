@@ -5,5 +5,8 @@
     %input.btn.btn-default(type='submit' value='Add' ng-disabled='!addAlbumForm.$valid')
   %ul.albums
     %li.album{"ng-repeat" => "album in albums"}
-      %a(href="/albums/{{album.id}}") {{album.title}} ({{album.photos_count}} photos)
-      .btn.btn-xs.btn-danger(ng-click='delete($index)') Delete
+      %a(href="/albums/{{album.id}}")
+        .col-lg-3.col-md-4.col-xs-6.thumb.medium
+          %img.thumbnail(src='{{album.album_cover}}')
+          {{album.title}} ({{album.photos_count}} photos)
+          %span.icon.icon-remove(ng-click='delete($index)')
