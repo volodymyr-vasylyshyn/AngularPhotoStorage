@@ -1,8 +1,9 @@
 / .col-lg-12(when-scrolled="load_data()")
 #photos_container(infinite-scroll="load_data()"  infinite-scroll-disabled='busy' infinite-scroll-distance='1')
   %h1.page-header Thumbnail Gallery
-  .photos.col-md-3.col-xs-6{"ng-repeat" => "photo in photos"}
-    .thumb.medium.thumbnail
-      .img-wrapper
-        %img(src='{{photo.medium}}' launch-gallery index='{{$index}}')
-  %image-gallery.photo-gallery(images='photos' ng-show='showGallery')
+  .row.photos-set
+    .photos.col-md-3.col-xs-6{"ng-repeat" => "photo in photos"}
+      .thumb.medium.thumbnail
+        .img-wrapper
+          %img(src='{{photo.medium}}' launch-gallery index='{{$index}}')
+    %image-gallery.photo-gallery(images='photos' ng-show='showGallery')

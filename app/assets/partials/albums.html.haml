@@ -3,10 +3,18 @@
   %form{'ng-submit' => 'addAlbum()', 'name' => 'addAlbumForm'}
     %input.form-control(type='text' ng-model='newAlbum.title' required)
     %input.btn.btn-default(type='submit' value='Add' ng-disabled='!addAlbumForm.$valid')
-  %ul.albums
-    %li.album{"ng-repeat" => "album in albums"}
-      %a(href="/albums/{{album.id}}")
-        .col-lg-3.col-md-4.col-xs-6.thumb.medium
-          %img.thumbnail(src='{{album.album_cover}}')
-          {{album.title}} ({{album.photos_count}} photos)
-          %span.icon.icon-remove(ng-click='delete($index)')
+  .row.photos-set
+    /%h1.page-header Thumbnail Gallery
+    .photos.col-md-3.col-xs-6{"ng-repeat" => "album in albums"}
+      .thumb.medium.thumbnail
+        %a(href="/albums/{{album.id}}")
+          .img-wrapper
+            %img(src='{{album.album_cover}}')
+          %span(title='{{album.title}}')
+            {{album.title}} 
+          %span
+            ({{album.photos_count}})
+        .icn-btn-remove(ng-click='delete($index)') &#215;
+    .clearfix
+
+

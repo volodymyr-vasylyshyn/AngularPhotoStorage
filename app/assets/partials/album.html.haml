@@ -1,7 +1,7 @@
 .span12{"ng-controller" => "AlbumCtrl"}
   %h1.page-header {{album.title}}
   .row
-    .col-md-8
+    .col-md-8.photos-set
       /%h1.page-header Thumbnail Gallery
       .photos.col-md-4.col-xs-6{"ng-repeat" => "photo in album.photos"}
         .thumb.medium.thumbnail
